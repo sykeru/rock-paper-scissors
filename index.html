@@ -9,6 +9,16 @@
     <script>
         choices = ["rock", "paper", "scissors"]
 
+        function getRounds() {
+            let rounds = Number(prompt("How many rounds do you want to play?"))
+            if (Number.isInteger(rounds)) {
+                return rounds
+            } else {
+                alert("Invalid input!")
+                getRounds()
+            }
+        }
+
         function getComputerChoice() {
             return choices[Math.floor(Math.random() * 3)]
         }
@@ -26,9 +36,10 @@
         }
 
         
-        function playGame(rounds) {
+        function playGame(rounds) { 
             let humanScore = 0
             let computerScore = 0
+            let ties = 0
             let status
 
             function playRound(humanChoice, computerChoice) {
@@ -37,6 +48,7 @@
                     humanScore++
                     status = "You won"
                 } else if (humanChoice == computerChoice) {
+                    ties++
                     status = "It's a tie"
                 } else {
                     computerScore++
@@ -51,10 +63,10 @@
                 console.log(`Round ${i} - You: ${humanScore}, Computer: ${computerScore}`)
             };
 
-            alert(`You: ${humanScore}, Computer: ${computerScore}`)
+            alert(`You: ${humanScore} \nComputer: ${computerScore} \nTies: ${ties}`)
         };
 
-        playGame(5);
+        playGame(getRounds());
 
     </script>
 </body>
